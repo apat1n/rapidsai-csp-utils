@@ -35,7 +35,7 @@ if ('K80' not in gpu_name):
 
 
   # Install RAPIDS -- we're doing this in one file, for now, due to ease of use
-  output = subprocess.Popen(["pip install cudf-cu11 cuml-cu11 cugraph-cu11 aiohttp --extra-index-url=https://pypi.nvidia.com"], shell=True, stderr=subprocess.STDOUT, 
+  output = subprocess.Popen(["pip install cudf-cu12 cuml-cu12 cugraph-cu12 aiohttp --extra-index-url=https://pypi.nvidia.com"], shell=True, stderr=subprocess.STDOUT, 
       stdout=subprocess.PIPE)
   for line in io.TextIOWrapper(output.stdout, encoding="utf-8"):
     if(line == ""):
@@ -49,7 +49,7 @@ if ('K80' not in gpu_name):
       break
     else:
       print(line.rstrip())
-  output = subprocess.Popen(["pip install cupy-cuda11x"], shell=True, stderr=subprocess.STDOUT, 
+  output = subprocess.Popen(["pip install cupy-cuda12x"], shell=True, stderr=subprocess.STDOUT, 
       stdout=subprocess.PIPE)
   for line in io.TextIOWrapper(output.stdout, encoding="utf-8"):
     if(line == ""):
@@ -72,7 +72,7 @@ r
        )
 else:
   raise Exception("""
-                  Unfortunately Colab didn't give you a RAPIDS compatible GPU (P4, P100, T4, or V100), but gave you a """+ gpu_name +""".
+                  Unfortunately Colab didn't give you a RAPIDS compatible GPU (T4, V100 or A100), but gave you a """+ gpu_name +""".
 
                   Please use 'Runtime -> Factory Reset Runtimes...', which will allocate you a different GPU instance, to try again."""
   )  
